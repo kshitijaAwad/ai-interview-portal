@@ -38,13 +38,28 @@ function MyInterviews() {
 
             <h2>My Interviews</h2>
 
-            <table className="table table-bordered mt-4">
+            {sessions.length === 0 && (
+
+                <div className="alert alert-info mt-4">
+
+                    No interviews found.
+                    Generate your first interview.
+
+                </div>
+
+            )}
+
+            
+          {sessions.length > 0 && (
+
+            <table className="table table-hover table-striped mt-4 shadow">
 
                 <thead>
                     <tr>
                         <th>Session ID</th>
                         <th>Domain</th>
                         <th>Difficulty</th>
+                        <th>Created Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -60,6 +75,11 @@ function MyInterviews() {
                             <td>{session.domain}</td>
 
                             <td>{session.difficulty}</td>
+
+                            <td>
+                                {new Date(session.createdAt)
+                                    .toLocaleDateString()}
+                            </td>
 
                             <td>
 
@@ -84,6 +104,8 @@ function MyInterviews() {
 
             </table>
 
+        )}
+            
         </div>
         </>
     );

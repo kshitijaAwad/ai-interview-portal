@@ -29,22 +29,45 @@ function SessionDetails() {
         }
     };
 
-    if (!session) {
-        return <h3>Loading...</h3>;
-    }
+   if (!session) {
+    return (
+        <>
+            <Navbar />
+            <div className="container mt-5">
+                <div className="alert alert-info">
+                    Loading Interview Details...
+                </div>
+            </div>
+        </>
+    );
+}
 
     return (
         <>
         < Navbar/>
         <div className="container mt-5">
 
-            <h2>Interview Details</h2>
+            <div className="card shadow mb-4">
 
-            <h5>Domain: {session.domain}</h5>
+            <div className="card-body">
 
-            <h5>Difficulty: {session.difficulty}</h5>
+                <h2>Interview Details</h2>
 
-            <hr />
+                <p>
+                    <strong>Session ID:</strong> {session.sessionId}
+                </p>
+
+                <p>
+                   <strong>Domain:</strong> {session.domain}
+                </p>
+
+                <p>
+                    <strong>Difficulty:</strong> {session.difficulty}
+                </p>
+
+            </div>
+
+        </div>
 
             {session.questions.map((q) => (
 
@@ -64,14 +87,34 @@ function SessionDetails() {
                         </p>
 
                         <p>
-                            <strong>Score:</strong>{" "}
-                            {q.score ?? "-"}
-                        </p>
 
-                        <p>
-                            <strong>Feedback:</strong>{" "}
-                            {q.feedback || "-"}
-                        </p>
+                            <strong>Score:</strong>{" "}
+
+                            {q.score != null ? (
+
+                                <span className="badge bg-success">
+                                    {q.score}/10
+                                </span>
+
+                            ) : (
+
+                                <span className="badge bg-secondary">
+                                    Not Evaluated
+                                </span>
+
+                            )}
+
+                            </p>
+
+                            <div className="alert alert-light mt-2">
+
+                            <strong>Feedback:</strong>
+
+                            <br />
+
+                            {q.feedback || "No feedback available"}
+
+                        </div>
 
                     </div>
                 </div>
