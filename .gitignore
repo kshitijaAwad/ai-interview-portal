@@ -1,0 +1,12 @@
+.metadata/
+
+springboot_backend_template/target/
+
+ai-interview-frontend/node_modules/
+ai-interview-frontend/dist/
+
+.project
+.classpath
+.settings/
+.idea/
+.vscode/
